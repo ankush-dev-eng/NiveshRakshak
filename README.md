@@ -459,6 +459,24 @@ Design principles:
 
 ---
 
+# ◉ Motion & Interaction
+
+NiveshRakshak is not designed as a static dashboard. Motion is used deliberately to guide attention, communicate state changes, and create a cinematic product experience without distracting from the analysis.
+
+The motion in the application is inspired by editorial and cinematic interfaces, and it uses Framer Motion + CSS transitions to achieve this.
+
+### ◌ Cinematic Preloader
+
+The landing page begins with a short cinematic introduction:
+
+```text
+NIVESHRAKSHAK
+
+0% ─────────────── 100%
+```
+
+---
+
 # ◉ Project Structure
 
 ```text
