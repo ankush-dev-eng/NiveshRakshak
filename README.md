@@ -469,36 +469,21 @@ without depending on a live Gemini response.
 
 ---
 
-# ◉ VISUAL SYSTEM
+# ◉ VISUAL IDENTITY
 
-The visual system deliberately follows the product's cinematic security aesthetic.
+| Token | Hex | Role |
+| --- | --- | --- |
+| ![](https://img.shields.io/badge/_%20-08080A?style=flat-square&logoColor=08080A) | `#08080A` | Background |
+| ![](https://img.shields.io/badge/_%20-F3F1EA?style=flat-square&logoColor=F3F1EA) | `#F3F1EA` | Foreground |
+| ![](https://img.shields.io/badge/_%20-807F78?style=flat-square&logoColor=807F78) | `#807F78` | Muted |
+| ![](https://img.shields.io/badge/_%20-111114?style=flat-square&logoColor=111114) | `#111114` | Surface |
+| ![](https://img.shields.io/badge/_%20-17171B?style=flat-square&logoColor=17171B) | `#17171B` | Surface 2 |
+| ![](https://img.shields.io/badge/_%20-FF3B1D?style=flat-square&logoColor=FF3B1D) | `#FF3B1D` | Signature Red |
+| ![](https://img.shields.io/badge/_%20-FF6A3D?style=flat-square&logoColor=FF6A3D) | `#FF6A3D` | Accent 2 |
 
-```text
-BACKGROUND     #08080A     ███████████████
-FOREGROUND     #F3F1EA     ███████████████
-MUTED          #807F78     ███████████████
-SURFACE        #111114     ███████████████
-SURFACE 2      #17171B     ███████████████
-SIGNATURE RED  #FF3B1D     ███████████████
-ACCENT 2       #FF6A3D     ███████████████
-```
+**Typography:** `ANTON` — display / risk levels / headings · `ONEST` — interface / body / analysis
 
-Typography:
-
-```text
-ANTON  →  Display / risk levels / major headings
-ONEST  →  Interface / body / analysis content
-```
-
-Design principles:
-
-- high contrast
-- editorial typography
-- thin dividers
-- restrained color
-- cinematic spacing
-- motion used for hierarchy
-- red reserved for important risk/action states
+**Design language:** Cinematic · Editorial · High Contrast · Restrained · Motion-Driven · Red reserved for risk states
 
 ---
 
