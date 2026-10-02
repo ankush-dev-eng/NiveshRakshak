@@ -1,7 +1,16 @@
 <div align="center">
 
+# 🛡️ NIVESHRAKSHAK
 
-<div align="center">
+<a href="https://github.com/ankush-dev-eng/NiveshRakshak">
+  <img src="https://readme-typing-svg.demolab.com?font=Anton&weight=400&size=24&pause=1000&color=FF3B1D&center=true&vCenter=true&width=600&height=50&lines=AI-POWERED+FINANCIAL+SAFETY;ANALYZE+BEFORE+YOU+ACT;DETECT+RED+FLAGS;UNDERSTAND+CLAIMS;VERIFY+BEFORE+TRUSTING" alt="Typing SVG" />
+</a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=08080A,FF3B1D&height=250&section=header&text=NIVESHRAKSHAK&fontSize=70&fontColor=F3F1EA&animation=fadeIn&desc=AI-ASSISTED%20FINANCIAL%20SAFETY&descAlignY=70&descAlign=50" alt="NiveshRakshak Banner" />
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=10&section=footer" alt="Divider" />
+
+</div>
 
 ---
 
@@ -225,6 +234,16 @@ flowchart TB
 # ◉ Tech Stack
 
 <div align="center">
+
+![Next.js](https://img.shields.io/badge/Next.js-08080A?style=for-the-badge&logo=next.js&logoColor=F3F1EA)
+![React](https://img.shields.io/badge/React-08080A?style=for-the-badge&logo=react&logoColor=F3F1EA)
+![TypeScript](https://img.shields.io/badge/TypeScript-08080A?style=for-the-badge&logo=typescript&logoColor=F3F1EA)
+![FastAPI](https://img.shields.io/badge/FastAPI-08080A?style=for-the-badge&logo=fastapi&logoColor=F3F1EA)
+![Gemini 3.5 Flash](https://img.shields.io/badge/Gemini_3.5_Flash-FF3B1D?style=for-the-badge&logo=google&logoColor=F3F1EA)
+![Tailwind](https://img.shields.io/badge/Tailwind-08080A?style=for-the-badge&logo=tailwindcss&logoColor=F3F1EA)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-08080A?style=for-the-badge&logo=framer&logoColor=F3F1EA)
+
+</div>
 
 ---
 
@@ -461,9 +480,43 @@ Design principles:
 
 # ◉ Motion & Interaction
 
-NiveshRakshak is not designed as a static dashboard. Motion is used deliberately to guide attention, communicate state changes, and create a cinematic product experience without distracting from the analysis.
+NiveshRakshak treats motion as information architecture rather than decoration. Animations establish sequence, communicate state, guide attention, and make the analysis easier to follow.
 
-The motion in the application is inspired by editorial and cinematic interfaces, and it uses Framer Motion + CSS transitions to achieve this.
+The application combines:
+
+- Framer Motion
+- CSS transitions
+- viewport-triggered reveals
+- staggered entrance animations
+- state-aware transitions
+
+### ◌ Motion Hierarchy
+
+```text
+PAGE ENTRY
+↓
+PRELOADER
+↓
+HERO REVEAL
+↓
+SCROLL REVEALS
+↓
+USER INTERACTION
+↓
+LIVE ANALYSIS
+↓
+RISK STATE
+↓
+RED FLAGS
+↓
+CLAIMS
+↓
+ACTION PLAN
+↓
+VERIFICATION
+↓
+FINAL DISCLAIMER
+```
 
 ### ◌ Cinematic Preloader
 
