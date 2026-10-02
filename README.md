@@ -1,20 +1,42 @@
 <div align="center">
 
-# 🛡️ NIVESHRAKSHAK
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:08080A,100:FF3B1D&height=220&section=header&text=NIVESHRAKSHAK&fontSize=60&fontColor=F3F1EA&animation=fadeIn&fontAlignY=35&desc=AI-ASSISTED%20FINANCIAL%20SAFETY&descAlignY=55&descSize=16&descAlign=50" width="100%" alt="NiveshRakshak" />
+
+<br/>
 
 <a href="https://github.com/ankush-dev-eng/NiveshRakshak">
-  <img src="https://readme-typing-svg.demolab.com?font=Anton&weight=400&size=24&pause=1000&color=FF3B1D&center=true&vCenter=true&width=600&height=50&lines=AI-POWERED+FINANCIAL+SAFETY;ANALYZE+BEFORE+YOU+ACT;DETECT+RED+FLAGS;UNDERSTAND+CLAIMS;VERIFY+BEFORE+TRUSTING" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=500&size=20&pause=1000&color=FF3B1D&center=true&vCenter=true&width=520&height=45&lines=AI-POWERED+FINANCIAL+SAFETY;ANALYZE+BEFORE+YOU+ACT;DETECT+RED+FLAGS;UNDERSTAND+CLAIMS;VERIFY+BEFORE+TRUSTING;LIVE+GEMINI+ANALYSIS" alt="Typing SVG" />
 </a>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=08080A,FF3B1D&height=250&section=header&text=NIVESHRAKSHAK&fontSize=70&fontColor=F3F1EA&animation=fadeIn&desc=AI-ASSISTED%20FINANCIAL%20SAFETY&descAlignY=70&descAlign=50" alt="NiveshRakshak Banner" />
+<br/><br/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=10&section=footer" alt="Divider" />
+![Next.js](https://img.shields.io/badge/Next.js-08080A?style=for-the-badge&logo=next.js&logoColor=F3F1EA)
+![React](https://img.shields.io/badge/React-08080A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-08080A?style=for-the-badge&logo=typescript&logoColor=3178C6)
+![FastAPI](https://img.shields.io/badge/FastAPI-08080A?style=for-the-badge&logo=fastapi&logoColor=009688)
+![Gemini 3.5 Flash](https://img.shields.io/badge/Gemini_3.5_Flash-FF3B1D?style=for-the-badge&logo=google&logoColor=F3F1EA)
+![Tailwind](https://img.shields.io/badge/Tailwind-08080A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-08080A?style=for-the-badge&logo=framer&logoColor=F3F1EA)
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=2&section=footer" width="60%" alt="" />
+
+</div>
+
+<br/>
+
+<div align="center">
+
+### ANALYZE BEFORE YOU ACT.
+
+An AI-assisted financial safety platform that analyzes suspicious investment messages, detects red flags, evaluates claims, and produces structured risk assessments — powered by **Google Gemini 3.5 Flash**.
 
 </div>
 
 ---
 
-## ◉ The Problem
+# ◉ THE PROBLEM
 
 Financial scams rarely arrive looking like scams.
 
@@ -41,9 +63,7 @@ NiveshRakshak focuses on that gap.
 
 ---
 
-# ◉ The Solution
-
-## **NIVESHRAKSHAK**
+# ◉ THE SOLUTION
 
 NiveshRakshak analyzes user-supplied financial content with **Google Gemini 3.5 Flash** and converts it into a structured, evidence-oriented risk assessment.
 
@@ -62,17 +82,25 @@ The system is intentionally designed as an **AI-assisted risk analysis tool**, n
 
 ---
 
-## ✦ Core Features
+# ◉ CORE FEATURES
 
-<table>
-<tr>
-<td width="50%" valign="top">
+```text
+01 — LIVE AI ANALYSIS        Gemini 3.5 Flash on arbitrary user input
+02 — RED FLAG DETECTION       Pattern-based evidence extraction
+03 — CLAIM ASSESSMENT         Individual claim verification status
+04 — RISK SCORING             LOW / MEDIUM / HIGH / CRITICAL
+05 — MULTILINGUAL OUTPUT      English · Hindi · Marathi · Hinglish
+06 — DEMO CENTER              5 deterministic scenarios for presentation
+07 — SAFETY GUARDRAILS        No investment advice · no fraud proof
+08 — SOURCE TRANSPARENCY      Every response tagged gemini or demo
+```
 
 ---
 
-# ◉ Product Flow
+# ◉ PRODUCT FLOW
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#111114', 'primaryTextColor': '#F3F1EA', 'primaryBorderColor': '#FF3B1D', 'lineColor': '#807F78', 'secondaryColor': '#17171B', 'tertiaryColor': '#08080A', 'edgeLabelBackground': '#08080A', 'clusterBkg': '#111114', 'clusterBorder': '#FF3B1D', 'fontSize': '14px'}}}%%
 flowchart LR
     A["User Input"] --> B["Next.js Interface"]
     B --> C["FastAPI API"]
@@ -92,28 +120,28 @@ flowchart LR
 
 ---
 
-# ◉ What the AI Produces
+# ◉ WHAT THE AI PRODUCES
 
-A live analysis can contain:
+A live analysis contains:
 
 ```text
-RISK LEVEL
-↓
-RISK SCORE
-↓
-AI SUMMARY
-↓
-RED FLAGS
-↓
-CLAIMS
-↓
-EVIDENCE
-↓
-RECOMMENDED ACTIONS
-↓
-VERIFICATION STEPS
-↓
-SAFETY DISCLAIMER
+01 — RISK LEVEL
+     ↓
+02 — RISK SCORE
+     ↓
+03 — AI SUMMARY
+     ↓
+04 — RED FLAGS
+     ↓
+05 — CLAIMS
+     ↓
+06 — EVIDENCE
+     ↓
+07 — RECOMMENDED ACTIONS
+     ↓
+08 — VERIFICATION STEPS
+     ↓
+09 — SAFETY DISCLAIMER
 ```
 
 ### Example
@@ -147,14 +175,14 @@ The important distinction is that the system should explain **observable charact
 
 ---
 
-# ◉ Live AI vs Demo Mode
+# ◉ LIVE AI vs DEMO MODE
 
 NiveshRakshak deliberately separates the two.
 
-| Mode                       | Purpose                        | Source                   |
-| -------------------------- | ------------------------------ | ------------------------ |
-| 🟢`LIVE GEMINI ANALYSIS` | Arbitrary user input           | Gemini 3.5 Flash         |
-| 🟠`DEMO MODE`            | Predefined synthetic scenarios | Deterministic local data |
+| Mode | Purpose | Source |
+| --- | --- | --- |
+| 🟢 `LIVE GEMINI ANALYSIS` | Arbitrary user input | Gemini 3.5 Flash |
+| 🟠 `DEMO MODE` | Predefined synthetic scenarios | Deterministic local data |
 
 The API returns an explicit:
 
@@ -176,39 +204,38 @@ This prevents a polished demo response from being mistaken for a live model resp
 
 ---
 
-# ◉ Safety & Guardrails
+# ◉ SAFETY & GUARDRAILS
 
 NiveshRakshak is designed around a few strict principles:
 
-### 01 — No Personalized Investment Advice
+```text
+01 — NO PERSONALIZED INVESTMENT ADVICE
+     The system does not tell users which stocks, mutual funds,
+     crypto assets, brokers, or financial products to buy.
 
-The system does not tell users which stocks, mutual funds, crypto assets, brokers, or financial products to buy.
+02 — NO AUTOMATIC PROOF OF FRAUD
+     An AI risk assessment is not proof that a person, company,
+     message, or investment is fraudulent.
 
-### 02 — No Automatic Proof of Fraud
+03 — EVIDENCE BEFORE CONCLUSIONS
+     The analysis should be grounded in the content
+     supplied by the user.
 
-An AI risk assessment is **not proof that a person, company, message, or investment is fraudulent**.
+04 — UNCERTAINTY IS EXPLICIT
+     When information is insufficient, the system returns
+     "Insufficient context" rather than inventing context.
 
-### 03 — Evidence Before Conclusions
-
-The analysis should be grounded in the content supplied by the user.
-
-### 04 — Uncertainty Is Explicit
-
-When information is insufficient, the system can return:
-
-> **Insufficient context for financial risk analysis.**
-
-rather than inventing context.
-
-### 05 — Human Verification Still Matters
-
-Users are encouraged to independently verify important claims using appropriate official sources.
+05 — HUMAN VERIFICATION STILL MATTERS
+     Users are encouraged to independently verify important
+     claims using appropriate official sources.
+```
 
 ---
 
-# ◉ Architecture
+# ◉ ARCHITECTURE
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#111114', 'primaryTextColor': '#F3F1EA', 'primaryBorderColor': '#FF3B1D', 'lineColor': '#807F78', 'secondaryColor': '#17171B', 'tertiaryColor': '#08080A', 'edgeLabelBackground': '#08080A', 'clusterBkg': '#111114', 'clusterBorder': '#FF3B1D', 'fontSize': '14px'}}}%%
 flowchart TB
     U["👤 User"] --> UI["Next.js + React"]
     UI --> API["FastAPI"]
@@ -231,23 +258,24 @@ flowchart TB
 
 ---
 
-# ◉ Tech Stack
+# ◉ TECH STACK
 
 <div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-08080A?style=for-the-badge&logo=next.js&logoColor=F3F1EA)
-![React](https://img.shields.io/badge/React-08080A?style=for-the-badge&logo=react&logoColor=F3F1EA)
-![TypeScript](https://img.shields.io/badge/TypeScript-08080A?style=for-the-badge&logo=typescript&logoColor=F3F1EA)
-![FastAPI](https://img.shields.io/badge/FastAPI-08080A?style=for-the-badge&logo=fastapi&logoColor=F3F1EA)
-![Gemini 3.5 Flash](https://img.shields.io/badge/Gemini_3.5_Flash-FF3B1D?style=for-the-badge&logo=google&logoColor=F3F1EA)
-![Tailwind](https://img.shields.io/badge/Tailwind-08080A?style=for-the-badge&logo=tailwindcss&logoColor=F3F1EA)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-08080A?style=for-the-badge&logo=framer&logoColor=F3F1EA)
+| Layer | Technology |
+| --- | --- |
+| **Frontend** | Next.js · React · TypeScript · Tailwind CSS |
+| **Animation** | Framer Motion · CSS Transitions |
+| **Backend** | FastAPI · Python · Uvicorn |
+| **AI Engine** | Google Gemini 3.5 Flash |
+| **Typography** | Anton (display) · Onest (interface) |
+| **Design** | Cinematic dark theme · editorial layout |
 
 </div>
 
 ---
 
-# ◉ Getting Started
+# ◉ GETTING STARTED
 
 ## Prerequisites
 
@@ -263,7 +291,7 @@ Make sure you have:
 ## 1. Clone
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/ankush-dev-eng/NiveshRakshak.git
 cd NiveshRakshak
 ```
 
@@ -343,7 +371,7 @@ http://localhost:3000
 
 ---
 
-# ◉ Test the API
+# ◉ TEST THE API
 
 ### Health
 
@@ -393,7 +421,7 @@ Expected:
 
 ---
 
-# ◉ Testing
+# ◉ TESTING
 
 Run backend tests:
 
@@ -421,19 +449,15 @@ The project includes tests for important behavior including:
 
 ---
 
-# ◉ Demo Scenarios
+# ◉ DEMO SCENARIOS
 
 The Demo Center contains synthetic scenarios designed for a reliable presentation:
 
 ```text
 01 — GUARANTEED RETURN SCAM
-
 02 — FAKE REGULATORY APPROVAL
-
 03 — CREDENTIAL / OTP PHISHING
-
 04 — FAKE TRADING MENTOR
-
 05 — EDUCATIONAL FINANCIAL MESSAGE
 ```
 
@@ -445,18 +469,18 @@ without depending on a live Gemini response.
 
 ---
 
-# ◉ Interface
+# ◉ VISUAL SYSTEM
 
 The visual system deliberately follows the product's cinematic security aesthetic.
 
 ```text
-BACKGROUND     #08080A
-FOREGROUND     #F3F1EA
-MUTED          #807F78
-SURFACE        #111114
-SURFACE 2      #17171B
-SIGNATURE RED  #FF3B1D
-ACCENT 2       #FF6A3D
+BACKGROUND     #08080A     ███████████████
+FOREGROUND     #F3F1EA     ███████████████
+MUTED          #807F78     ███████████████
+SURFACE        #111114     ███████████████
+SURFACE 2      #17171B     ███████████████
+SIGNATURE RED  #FF3B1D     ███████████████
+ACCENT 2       #FF6A3D     ███████████████
 ```
 
 Typography:
@@ -478,59 +502,143 @@ Design principles:
 
 ---
 
-# ◉ Motion & Interaction
+# ◉ MOTION & INTERACTION
 
-NiveshRakshak treats motion as information architecture rather than decoration. Animations establish sequence, communicate state, guide attention, and make the analysis easier to follow.
+Motion is treated as information architecture rather than decoration. Animations establish sequence, communicate state, guide attention, and make the analysis easier to follow.
 
 The application combines:
 
-- Framer Motion
-- CSS transitions
-- viewport-triggered reveals
-- staggered entrance animations
-- state-aware transitions
+- **Framer Motion** — page transitions, entrance animations, exit animations
+- **CSS transitions** — hover states, color changes, border reveals
+- **CSS keyframes** — marquee ticker, loading pulse, ping indicators
+- **Viewport-triggered reveals** — staggered content entrance on scroll
+- **State-aware transitions** — AnimatePresence for loading/result/error states
 
 ### ◌ Motion Hierarchy
 
 ```text
 PAGE ENTRY
-↓
+  ↓
 PRELOADER
-↓
+  ↓
 HERO REVEAL
-↓
-SCROLL REVEALS
-↓
+  ↓
+MARQUEE TICKER
+  ↓
+SCROLL SECTIONS
+  ↓
 USER INTERACTION
-↓
+  ↓
 LIVE ANALYSIS
-↓
+  ↓
 RISK STATE
-↓
+  ↓
 RED FLAGS
-↓
+  ↓
 CLAIMS
-↓
+  ↓
 ACTION PLAN
-↓
+  ↓
 VERIFICATION
-↓
+  ↓
 FINAL DISCLAIMER
 ```
 
 ### ◌ Cinematic Preloader
 
-The landing page begins with a short cinematic introduction:
+The landing page begins with a cinematic loading sequence. A full-screen overlay displays the **NIVESHRAKSHAK** wordmark while a progress counter advances from 0% to 100%. On completion, the preloader slides upward with a custom cubic-bezier ease, revealing the hero section beneath.
 
 ```text
 NIVESHRAKSHAK
 
 0% ─────────────── 100%
+          ↓
+     [ SLIDE UP ]
+```
+
+Respects `prefers-reduced-motion` via Framer Motion's `MotionConfig reducedMotion="user"`.
+
+### ◌ Hero Reveal
+
+After the preloader exits, hero elements animate in with staggered delays:
+
+```text
+DELAY    ELEMENT
+1.0s     badge ("AI-Powered Financial Safety")
+1.1s     headline
+1.2s     description
+1.3s     CTA buttons
+2.0s     scroll indicator
+```
+
+Each element enters with `opacity: 0 → 1` and `y: 20–30px → 0`.
+
+### ◌ Marquee Ticker
+
+A continuous horizontal scroll of safety phrases runs on CSS `animate-marquee`:
+
+```text
+DETECT RED FLAGS · VERIFY BEFORE YOU TRUST · THINK BEFORE YOU TRANSFER · QUESTION GUARANTEED RETURNS · PROTECT YOUR MONEY
+```
+
+### ◌ Analysis State Transitions
+
+The dashboard uses `AnimatePresence mode="wait"` to manage four exclusive states:
+
+```text
+EMPTY        →  dashed border · "Awaiting Input"
+LOADING      →  pulsing accent glow · spinning loader · "Running Risk Engine"
+ERROR        →  red-tinted container · error message
+RESULT       →  slides in from y:20 · full structured analysis
+```
+
+### ◌ Risk State
+
+Risk levels use color-coded typography:
+
+```text
+LOW         foreground (off-white)
+MEDIUM      amber-500
+HIGH        accent (signature red) + red underline
+CRITICAL    accent (signature red) + red underline
+```
+
+### ◌ Red Flag Reveal
+
+Each red flag renders in a left-bordered card with accent color. Evidence is displayed in monospace blocks. Flags are listed sequentially.
+
+### ◌ Demo Interaction
+
+```text
+SELECT scenario → LOAD into dashboard → ANALYZE → RESULT
+```
+
+The demo page uses direct navigation to `/dashboard?demo=N`, pre-filling the text area with the selected scenario content.
+
+### ◌ Mobile Menu
+
+Hamburger icon toggles to X. Navigation links render in large heading typography with accent color for the active route. The menu appears via conditional rendering below the fixed navbar.
+
+### ◌ Architecture Node Indicator
+
+The architecture page includes an animated `ping` indicator on the connection line between User Input and the Next.js node, communicating active data flow.
+
+### ◌ Motion Diagram
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#111114', 'primaryTextColor': '#F3F1EA', 'primaryBorderColor': '#FF3B1D', 'lineColor': '#807F78', 'secondaryColor': '#17171B', 'tertiaryColor': '#08080A'}}}%%
+flowchart LR
+    A["ENTER"] --> B["UNDERSTAND"]
+    B --> C["ANALYZE"]
+    C --> D["SEE THE EVIDENCE"]
+    D --> E["UNDERSTAND THE RISK"]
+    E --> F["VERIFY"]
+    F --> G["ACT CAREFULLY"]
 ```
 
 ---
 
-# ◉ Project Structure
+# ◉ PROJECT STRUCTURE
 
 ```text
 NiveshRakshak/
@@ -568,19 +676,19 @@ NiveshRakshak/
 
 ---
 
-# ◉ Application Routes
+# ◉ APPLICATION ROUTES
 
-| Route             | Purpose                               |
-| ----------------- | ------------------------------------- |
-| `/`             | Product landing page                  |
-| `/dashboard`    | Live AI analysis workspace            |
-| `/demo`         | Deterministic demonstration scenarios |
-| `/trust`        | Safety, limitations & guardrails      |
-| `/architecture` | Technical architecture                |
+| Route | Purpose |
+| --- | --- |
+| `/` | Product landing page |
+| `/dashboard` | Live AI analysis workspace |
+| `/demo` | Deterministic demonstration scenarios |
+| `/trust` | Safety, limitations & guardrails |
+| `/architecture` | Technical architecture |
 
 ---
 
-# ◉ Why NiveshRakshak?
+# ◉ WHY NIVESHRAKSHAK?
 
 Most fraud interfaces stop at:
 
@@ -594,7 +702,7 @@ That distinction makes the system useful not only for detecting suspicious langu
 
 ---
 
-# ◉ Limitations
+# ◉ LIMITATIONS
 
 NiveshRakshak is an AI-assisted analysis tool.
 
@@ -611,7 +719,7 @@ AI output should be treated as informational guidance and independently verified
 
 ---
 
-# ◉ Future Scope
+# ◉ FUTURE SCOPE
 
 Potential future extensions include:
 
@@ -627,7 +735,7 @@ Potential future extensions include:
 
 ---
 
-# ◉ Demo
+# ◉ DEMO
 
 ### Local
 
@@ -654,20 +762,14 @@ https://youtu.be/YOUR_VIDEO_ID
 
 ---
 
-# ◉ Hackathon Highlights
+# ◉ HACKATHON HIGHLIGHTS
 
 ### Built Around Real User Behavior
 
 Designed around the types of messages users actually encounter:
 
 ```text
-WhatsApp
-SMS
-Telegram
-Email
-Social Media
-Investment Offers
-Phishing Messages
+WhatsApp · SMS · Telegram · Email · Social Media · Investment Offers · Phishing Messages
 ```
 
 ### AI + Explainability
@@ -675,15 +777,7 @@ Phishing Messages
 The output is structured into:
 
 ```text
-Risk
-↓
-Evidence
-↓
-Explanation
-↓
-Action
-↓
-Verification
+Risk → Evidence → Explanation → Action → Verification
 ```
 
 ### Bharat-First Accessibility
@@ -691,17 +785,14 @@ Verification
 Supports:
 
 ```text
-English
-Hindi
-Marathi
-Hinglish
+English · Hindi · Marathi · Hinglish
 ```
 
 with localized analysis rather than simply translating navigation labels.
 
 ---
 
-# ◉ Security Notes
+# ◉ SECURITY NOTES
 
 Never commit:
 
@@ -727,7 +818,7 @@ Make sure `.env` is ignored.
 
 ---
 
-# ◉ Contributing
+# ◉ CONTRIBUTING
 
 Contributions and improvements are welcome.
 
@@ -742,7 +833,7 @@ Then open a pull request.
 
 ---
 
-# ◉ License
+# ◉ LICENSE
 
 Add the project's chosen license here.
 
@@ -757,3 +848,17 @@ See [`LICENSE`](LICENSE) for details.
 ---
 
 <div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=2&section=footer" width="60%" alt="" />
+
+<br/><br/>
+
+**NIVESHRAKSHAK**
+
+AI-ASSISTED FINANCIAL SAFETY
+
+<br/>
+
+<sub>Analyze before you act.</sub>
+
+</div>
