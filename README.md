@@ -688,9 +688,27 @@ Backend  → http://localhost:8080
 
 ### Demo Video
 
-[![Watch Demo](https://img.shields.io/badge/Watch%20Demo-YouTube-FF3B1D?style=flat-square&labelColor=08080A)](https://youtu.be/YOUR_VIDEO_ID)
+<div align="center">
 
-> Replace `YOUR_VIDEO_ID` with the final YouTube URL once published.
+<a href="https://www.youtube.com/watch?v=2Sw1yrD9qEA">
+  <img
+    src="https://img.youtube.com/vi/2Sw1yrD9qEA/maxresdefault.jpg"
+    width="820"
+    alt="NiveshRakshak Demo Video"
+  />
+</a>
+
+<br/>
+
+### ▶ WATCH THE NIVESHRAKSHAK DEMO
+
+**90-second product walkthrough · AI-assisted financial safety**
+
+<br/>
+
+[ WATCH ON YOUTUBE ](https://www.youtube.com/watch?v=2Sw1yrD9qEA)
+
+</div>
 
 ---
 
