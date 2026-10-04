@@ -4,16 +4,16 @@
 
 <br/>
 
-[![Next.js](https://img.shields.io/badge/NEXT.JS-16-000000?style=for-the-badge&logo=next.js&logoColor=white&labelColor=17171B)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/REACT-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=17171B)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TYPESCRIPT-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=17171B)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/TAILWIND-4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white&labelColor=17171B)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/FRAMER_MOTION-13-E902B6?style=for-the-badge&logo=framer&logoColor=white&labelColor=17171B)](https://www.framer.com/motion/)
+[![Next.js](https://img.shields.io/badge/NEXT.JS-APP-000000?style=for-the-badge&logo=next.js&logoColor=white&labelColor=17171B)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/REACT-UI-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=17171B)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TYPESCRIPT-TS-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=17171B)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/TAILWIND_CSS-CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white&labelColor=17171B)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/FRAMER_MOTION-MOTION-E902B6?style=for-the-badge&logo=framer&logoColor=white&labelColor=17171B)](https://www.framer.com/motion/)
 
 <br/>
 
 [![FastAPI](https://img.shields.io/badge/FASTAPI-API-009688?style=for-the-badge&logo=fastapi&logoColor=white&labelColor=17171B)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/PYTHON-3-3776AB?style=for-the-badge&logo=python&logoColor=white&labelColor=17171B)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/PYTHON-BACKEND-3776AB?style=for-the-badge&logo=python&logoColor=white&labelColor=17171B)](https://www.python.org/)
 [![Google Gemini](https://img.shields.io/badge/GOOGLE_GEMINI-AI-FF3B1D?style=for-the-badge&logo=google&logoColor=white&labelColor=17171B)](https://ai.google.dev/)
 
 </div>
