@@ -4,14 +4,17 @@
 
 <br/>
 
-[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-17%20Passed-FF3B1D?style=flat-square&labelColor=08080A)](./backend/test_main.py)
-[![Frontend Build](https://img.shields.io/badge/Frontend%20Build-Passing-FF3B1D?style=flat-square&labelColor=08080A)](./frontend)
+[![Next.js](https://img.shields.io/badge/NEXT.JS-16-000000?style=for-the-badge&logo=next.js&logoColor=white&labelColor=17171B)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/REACT-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=17171B)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TYPESCRIPT-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=17171B)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/TAILWIND-4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white&labelColor=17171B)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/FRAMER_MOTION-13-E902B6?style=for-the-badge&logo=framer&logoColor=white&labelColor=17171B)](https://www.framer.com/motion/)
 
 <br/>
 
-```text
-17 BACKEND TESTS · 0 TYPESCRIPT BUILD ERRORS · 5 DEMO SCENARIOS · 4 OUTPUT LANGUAGES · LIVE + DETERMINISTIC MODES
-```
+[![FastAPI](https://img.shields.io/badge/FASTAPI-API-009688?style=for-the-badge&logo=fastapi&logoColor=white&labelColor=17171B)](https://fastapi.tiangolo.com/)
+[![Python](https://img.shields.io/badge/PYTHON-3-3776AB?style=for-the-badge&logo=python&logoColor=white&labelColor=17171B)](https://www.python.org/)
+[![Google Gemini](https://img.shields.io/badge/GOOGLE_GEMINI-AI-FF3B1D?style=for-the-badge&logo=google&logoColor=white&labelColor=17171B)](https://ai.google.dev/)
 
 </div>
 
@@ -242,37 +245,9 @@ The backend reads `GEMINI_MODEL` from environment at startup. Every endpoint —
 
 ---
 
-# ◉ TECHNOLOGY STACK
+# ◉ TECH STACK
 
-<div align="center">
 
-### FRONTEND
-
-[![Next.js](https://img.shields.io/badge/Next.js-08080A?style=for-the-badge&logo=next.js&logoColor=F3F1EA)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-08080A?style=for-the-badge&logo=react&logoColor=F3F1EA)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-08080A?style=for-the-badge&logo=typescript&logoColor=F3F1EA)](https://www.typescriptlang.org/)
-<br/>
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-08080A?style=for-the-badge&logo=tailwind-css&logoColor=F3F1EA)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-08080A?style=for-the-badge&logo=framer&logoColor=F3F1EA)](https://www.framer.com/motion/)
-
-<br/>
-
-### BACKEND + AI
-
-[![FastAPI](https://img.shields.io/badge/FastAPI-08080A?style=for-the-badge&logo=fastapi&logoColor=F3F1EA)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/Python-08080A?style=for-the-badge&logo=python&logoColor=F3F1EA)](https://www.python.org/)
-[![Google Gemini](https://img.shields.io/badge/Google_Gemini-FF3B1D?style=for-the-badge&logo=google&logoColor=F3F1EA)](https://ai.google.dev/)
-
-<br/>
-
-### ENGINEERING
-
-[![pytest](https://img.shields.io/badge/pytest-08080A?style=for-the-badge&logo=pytest&logoColor=F3F1EA)](https://docs.pytest.org/)
-[![Git](https://img.shields.io/badge/Git-08080A?style=for-the-badge&logo=git&logoColor=F3F1EA)](https://git-scm.com/)
-
-</div>
-
-<br/>
 
 | Category | Technology | Role |
 |---|---|---|
