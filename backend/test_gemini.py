@@ -13,7 +13,7 @@ print(f"ENV_PATH = {env_path}")
 try:
     client = genai.Client(api_key=GEMINI_API_KEY)
     print("GEMINI CONNECTION: PASS")
-    GEMINI_MODEL = "gemini-3.5-flash"
+    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
     print(f"MODEL: {GEMINI_MODEL}")
     
     response = client.models.generate_content(

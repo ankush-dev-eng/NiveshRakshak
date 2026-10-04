@@ -1,36 +1,14 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:08080A,100:FF3B1D&height=220&section=header&text=NIVESHRAKSHAK&fontSize=60&fontColor=F3F1EA&animation=fadeIn&fontAlignY=35&desc=AI-ASSISTED%20FINANCIAL%20SAFETY&descAlignY=55&descSize=16&descAlign=50" width="100%" alt="NiveshRakshak" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=FF3B1D&height=120&section=header&text=NIVESHRAKSHAK&fontSize=36&fontColor=F3F1EA&fontAlignY=45&desc=AI-ASSISTED%20FINANCIAL%20SAFETY&descAlignY=70&descSize=14&animation=fadeIn" width="100%"/>
 
 <br/>
 
-<a href="https://github.com/ankush-dev-eng/NiveshRakshak">
-  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=500&size=20&pause=1000&color=FF3B1D&center=true&vCenter=true&width=520&height=45&lines=AI-POWERED+FINANCIAL+SAFETY;ANALYZE+BEFORE+YOU+ACT;DETECT+RED+FLAGS;UNDERSTAND+CLAIMS;VERIFY+BEFORE+TRUSTING;LIVE+GEMINI+ANALYSIS" alt="Typing SVG" />
-</a>
-
-<br/><br/>
-
-![Next.js](https://img.shields.io/badge/Next.js-08080A?style=for-the-badge&logo=next.js&logoColor=F3F1EA)
-![React](https://img.shields.io/badge/React-08080A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-08080A?style=for-the-badge&logo=typescript&logoColor=3178C6)
-![FastAPI](https://img.shields.io/badge/FastAPI-08080A?style=for-the-badge&logo=fastapi&logoColor=009688)
-![Gemini 3.5 Flash](https://img.shields.io/badge/Gemini_3.5_Flash-FF3B1D?style=for-the-badge&logo=google&logoColor=F3F1EA)
-![Tailwind](https://img.shields.io/badge/Tailwind-08080A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-08080A?style=for-the-badge&logo=framer&logoColor=F3F1EA)
-
-<br/>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=2&section=footer" width="60%" alt="" />
-
-</div>
-
-<br/>
-
-<div align="center">
-
-### ANALYZE BEFORE YOU ACT.
-
-An AI-assisted financial safety platform that analyzes suspicious investment messages, detects red flags, evaluates claims, and produces structured risk assessments — powered by **Google Gemini 3.5 Flash**.
+[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-17%20Passed-FF3B1D?style=flat-square&labelColor=08080A)](./backend/test_main.py)
+[![Frontend Build](https://img.shields.io/badge/Frontend%20Build-Passing-FF3B1D?style=flat-square&labelColor=08080A)](./frontend)
+[![Next.js](https://img.shields.io/badge/Next.js-16-F3F1EA?style=flat-square&labelColor=08080A)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Python-F3F1EA?style=flat-square&labelColor=08080A)](https://fastapi.tiangolo.com/)
+[![Gemini](https://img.shields.io/badge/Powered%20by-Google%20Gemini-FF6A3D?style=flat-square&labelColor=08080A)](https://ai.google.dev/)
 
 </div>
 
@@ -51,7 +29,7 @@ They arrive as:
 - Social-media investment pitches
 - High-pressure payment requests
 
-For a first-time or retail investor, the difficult question isn't only:
+For a first-time or retail investor, the difficult question is not only:
 
 > **"Is this a scam?"**
 
@@ -65,7 +43,7 @@ NiveshRakshak focuses on that gap.
 
 # ◉ THE SOLUTION
 
-NiveshRakshak analyzes user-supplied financial content with **Google Gemini 3.5 Flash** and converts it into a structured, evidence-oriented risk assessment.
+NiveshRakshak analyzes user-supplied financial content with **Google Gemini** and converts it into a structured, evidence-oriented risk assessment.
 
 Instead of simply returning:
 
@@ -85,7 +63,7 @@ The system is intentionally designed as an **AI-assisted risk analysis tool**, n
 # ◉ CORE FEATURES
 
 ```text
-01 — LIVE AI ANALYSIS        Gemini 3.5 Flash on arbitrary user input
+01 — LIVE AI ANALYSIS        Google Gemini on arbitrary user input
 02 — RED FLAG DETECTION       Pattern-based evidence extraction
 03 — CLAIM ASSESSMENT         Individual claim verification status
 04 — RISK SCORING             LOW / MEDIUM / HIGH / CRITICAL
@@ -105,7 +83,7 @@ flowchart LR
     A["User Input"] --> B["Next.js Interface"]
     B --> C["FastAPI API"]
     C --> D["Input Validation"]
-    D --> E["Gemini 3.5 Flash"]
+    D --> E["Google Gemini (Configurable)"]
     E --> F["Structured Analysis"]
     F --> G["Risk Assessment"]
     G --> H["Red Flags"]
@@ -171,7 +149,7 @@ Evidence:
 "Only two slots remain"
 ```
 
-The important distinction is that the system should explain **observable characteristics of the supplied content** rather than inventing unrelated financial claims.
+The important distinction is that the system explains **observable characteristics of the supplied content** rather than inventing unrelated financial claims.
 
 ---
 
@@ -179,12 +157,12 @@ The important distinction is that the system should explain **observable charact
 
 NiveshRakshak deliberately separates the two.
 
-| Mode | Purpose | Source |
-| --- | --- | --- |
-| 🟢 `LIVE GEMINI ANALYSIS` | Arbitrary user input | Gemini 3.5 Flash |
-| 🟠 `DEMO MODE` | Predefined synthetic scenarios | Deterministic local data |
+| Mode                       | Purpose                        | Source                   |
+| -------------------------- | ------------------------------ | ------------------------ |
+| 🟢 LIVE GEMINI ANALYSIS   | Arbitrary user input           | Configured Gemini model  |
+| 🟠 DEMO MODE              | Predefined synthetic scenarios | Deterministic local data |
 
-The API returns an explicit:
+The API tags every response with an explicit source field:
 
 ```json
 {
@@ -206,7 +184,7 @@ This prevents a polished demo response from being mistaken for a live model resp
 
 # ◉ SAFETY & GUARDRAILS
 
-NiveshRakshak is designed around a few strict principles:
+NiveshRakshak is designed around strict principles:
 
 ```text
 01 — NO PERSONALIZED INVESTMENT ADVICE
@@ -218,8 +196,7 @@ NiveshRakshak is designed around a few strict principles:
      message, or investment is fraudulent.
 
 03 — EVIDENCE BEFORE CONCLUSIONS
-     The analysis should be grounded in the content
-     supplied by the user.
+     The analysis is grounded in the content supplied by the user.
 
 04 — UNCERTAINTY IS EXPLICIT
      When information is insufficient, the system returns
@@ -240,7 +217,7 @@ flowchart TB
     U["👤 User"] --> UI["Next.js + React"]
     UI --> API["FastAPI"]
     API --> VAL["Input Validation"]
-    VAL --> AI["Gemini 3.5 Flash"]
+    VAL --> AI["Google Gemini"]
 
     AI --> PARSE["Structured JSON"]
     PARSE --> RISK["Risk Assessment"]
@@ -256,22 +233,22 @@ flowchart TB
     OUT --> UI
 ```
 
+**Single Source of Truth for the Active Model:**
+
+The backend reads `GEMINI_MODEL` from environment at startup. Every endpoint — `/api/analyze`, `/api/health`, and `/api/system-status` — uses that same value. The Architecture page fetches from `/api/system-status` and displays the live backend model dynamically. No model name is hardcoded anywhere in the frontend.
+
 ---
 
 # ◉ TECH STACK
 
-<div align="center">
-
-| Layer | Technology |
-| --- | --- |
-| **Frontend** | Next.js · React · TypeScript · Tailwind CSS |
-| **Animation** | Framer Motion · CSS Transitions |
-| **Backend** | FastAPI · Python · Uvicorn |
-| **AI Engine** | Google Gemini 3.5 Flash |
-| **Typography** | Anton (display) · Onest (interface) |
-| **Design** | Cinematic dark theme · editorial layout |
-
-</div>
+| Layer    | Technology                             |
+| -------- | -------------------------------------- |
+| Frontend | Next.js 16 · React · TypeScript        |
+| Styling  | Tailwind CSS · Custom design tokens    |
+| Motion   | Framer Motion · CSS keyframes          |
+| Backend  | FastAPI · Python                       |
+| AI       | Google Gemini API (model configurable) |
+| Testing  | pytest · FastAPI TestClient            |
 
 ---
 
@@ -284,7 +261,7 @@ Make sure you have:
 - Node.js
 - npm
 - Python 3.x
-- a Gemini API key
+- A Gemini API key
 
 ---
 
@@ -301,7 +278,6 @@ cd NiveshRakshak
 
 ```bash
 cd backend
-
 python -m venv venv
 ```
 
@@ -317,19 +293,14 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-Create:
-
-```text
-backend/.env
-```
-
-Add:
+Create `backend/.env` and add:
 
 ```env
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_MODEL=gemini-2.0-flash
 ```
 
-> ⚠️ Never commit `.env` or expose the API key to the frontend.
+> ⚠️ Never commit `.env` or expose the API key to the frontend. See `backend/.env.example` for the template.
 
 ---
 
@@ -339,17 +310,8 @@ GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 uvicorn main:app --reload --port 8080
 ```
 
-Backend:
-
-```text
-http://localhost:8080
-```
-
-Health check:
-
-```text
-http://localhost:8080/api/health
-```
+- Backend: `http://localhost:8080`
+- Health check: `http://localhost:8080/api/health`
 
 ---
 
@@ -363,29 +325,23 @@ npm install
 npm run dev -- --port 3000
 ```
 
-Frontend:
-
-```text
-http://localhost:3000
-```
+- Frontend: `http://localhost:3000`
 
 ---
 
 # ◉ TEST THE API
 
-### Health
+### Health check
 
-```bash
+```
 GET /api/health
 ```
 
 ### Live analysis
 
-```bash
+```
 POST /api/analyze
 ```
-
-Example:
 
 ```json
 {
@@ -395,15 +351,9 @@ Example:
 }
 ```
 
-Expected source:
+Expected: `{ "analysis_source": "gemini" }`
 
-```json
-{
-  "analysis_source": "gemini"
-}
-```
-
-For the deterministic demo engine:
+### Deterministic demo engine
 
 ```json
 {
@@ -411,13 +361,7 @@ For the deterministic demo engine:
 }
 ```
 
-Expected:
-
-```json
-{
-  "analysis_source": "demo"
-}
-```
+Expected: `{ "analysis_source": "demo" }`
 
 ---
 
@@ -437,21 +381,26 @@ cd frontend
 npm run build
 ```
 
-The project includes tests for important behavior including:
+The project includes **17 backend tests** covering:
 
-- health endpoint
-- invalid/empty input
-- oversized input
-- explicit demo mode
-- live analysis path
-- analysis source
-- AI-grounded analysis behavior
+- Health endpoint (model reported dynamically, not hardcoded)
+- Invalid / empty input validation
+- Oversized input rejection
+- Demo mode (no Gemini API call made)
+- Live analysis path
+- Analysis source tagging
+- API key status: connected, invalid, missing
+- Model availability verification via Gemini models list
+- Live generation test
+- Single source of truth: model in `/api/system-status` equals model used in `/api/analyze`
+- End-to-end model consistency with custom model ID
+- API key never returned in any response
 
 ---
 
 # ◉ DEMO SCENARIOS
 
-The Demo Center contains synthetic scenarios designed for a reliable presentation:
+The Demo Center contains five synthetic scenarios designed for a reliable presentation:
 
 ```text
 01 — GUARANTEED RETURN SCAM
@@ -461,7 +410,7 @@ The Demo Center contains synthetic scenarios designed for a reliable presentatio
 05 — EDUCATIONAL FINANCIAL MESSAGE
 ```
 
-Each can be:
+Each scenario can be:
 
 **LOAD → ANALYZE → INSPECT**
 
@@ -531,7 +480,7 @@ FINAL DISCLAIMER
 
 ### ◌ Cinematic Preloader
 
-The landing page begins with a cinematic loading sequence. A full-screen overlay displays the **NIVESHRAKSHAK** wordmark while a progress counter advances from 0% to 100%. On completion, the preloader slides upward with a custom cubic-bezier ease, revealing the hero section beneath.
+The landing page begins with a cinematic loading sequence. A full-screen overlay displays the **NIVESHRAKSHAK** wordmark while a progress counter advances from 0% to 100%. On completion, the preloader slides upward revealing the hero section beneath.
 
 ```text
 NIVESHRAKSHAK
@@ -560,7 +509,7 @@ Each element enters with `opacity: 0 → 1` and `y: 20–30px → 0`.
 
 ### ◌ Marquee Ticker
 
-A continuous horizontal scroll of safety phrases runs on CSS `animate-marquee`:
+A continuous horizontal scroll of safety phrases:
 
 ```text
 DETECT RED FLAGS · VERIFY BEFORE YOU TRUST · THINK BEFORE YOU TRANSFER · QUESTION GUARANTEED RETURNS · PROTECT YOUR MONEY
@@ -602,7 +551,7 @@ The demo page uses direct navigation to `/dashboard?demo=N`, pre-filling the tex
 
 ### ◌ Mobile Menu
 
-Hamburger icon toggles to X. Navigation links render in large heading typography with accent color for the active route. The menu appears via conditional rendering below the fixed navbar.
+Hamburger icon toggles to X. Navigation links render in large heading typography with accent color for the active route.
 
 ### ◌ Architecture Node Indicator
 
@@ -629,25 +578,25 @@ flowchart LR
 NiveshRakshak/
 │
 ├── backend/
-│   ├── main.py
+│   ├── main.py              ← FastAPI app, Gemini integration, all endpoints
 │   ├── requirements.txt
-│   ├── test_main.py
-│   ├── test_gemini.py
-│   ├── .env.example
+│   ├── test_main.py         ← 17 backend tests (all mocked, no real API key needed)
+│   ├── test_gemini.py       ← Manual live connectivity smoke test
+│   ├── .env.example         ← Template (never commit .env)
 │   └── venv/
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── dashboard/
-│   │   │   ├── demo/
-│   │   │   ├── trust/
-│   │   │   ├── architecture/
-│   │   │   └── page.tsx
+│   │   │   ├── dashboard/   ← Live analysis workspace + demoData + types
+│   │   │   ├── demo/        ← Deterministic demo center
+│   │   │   ├── trust/       ← Safety, limitations & guardrails
+│   │   │   ├── architecture/ ← Technical architecture + live status panel
+│   │   │   └── page.tsx     ← Landing page with cinematic preloader
 │   │   │
 │   │   ├── components/
-│   │   │   ├── layout/
-│   │   │   └── ui/
+│   │   │   ├── layout/      ← Navbar
+│   │   │   └── ui/          ← shadcn/ui components
 │   │   │
 │   │   └── lib/
 │   │
@@ -663,13 +612,13 @@ NiveshRakshak/
 
 # ◉ APPLICATION ROUTES
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Product landing page |
-| `/dashboard` | Live AI analysis workspace |
-| `/demo` | Deterministic demonstration scenarios |
-| `/trust` | Safety, limitations & guardrails |
-| `/architecture` | Technical architecture |
+| Route          | Purpose                               |
+| -------------- | ------------------------------------- |
+| `/`            | Product landing page                  |
+| `/dashboard`   | Live AI analysis workspace            |
+| `/demo`        | Deterministic demonstration scenarios |
+| `/trust`       | Safety, limitations & guardrails      |
+| `/architecture` | Technical architecture + live status  |
 
 ---
 
@@ -729,21 +678,11 @@ Frontend → http://localhost:3000
 Backend  → http://localhost:8080
 ```
 
-### Live Demo
-
-> Replace this with the deployed URL once the project is hosted.
-
-```text
-https://YOUR-LIVE-DEMO-URL
-```
-
 ### Demo Video
 
-> Replace with the final YouTube/video URL.
+[![Watch Demo](https://img.shields.io/badge/Watch%20Demo-YouTube-FF3B1D?style=flat-square&labelColor=08080A)](https://youtu.be/YOUR_VIDEO_ID)
 
-```text
-https://youtu.be/YOUR_VIDEO_ID
-```
+> Replace `YOUR_VIDEO_ID` with the final YouTube URL once published.
 
 ---
 
@@ -767,17 +706,13 @@ Risk → Evidence → Explanation → Action → Verification
 
 ### Bharat-First Accessibility
 
-Supports:
-
-```text
-English · Hindi · Marathi · Hinglish
-```
-
-with localized analysis rather than simply translating navigation labels.
+Supports English, Hindi, Marathi, and Hinglish with localized analysis rather than merely translated navigation labels.
 
 ---
 
 # ◉ SECURITY NOTES
+
+**The API key is server-side only.** It is loaded from `backend/.env` at startup and never returned to the frontend or logged to any output.
 
 Never commit:
 
@@ -791,15 +726,15 @@ Never expose:
 GEMINI_API_KEY
 ```
 
-The Gemini credential is intended to remain server-side.
-
 Recommended Git check before pushing:
 
 ```bash
 git status
+git grep -l "AIza"
+git grep -l "GEMINI_API_KEY="
 ```
 
-Make sure `.env` is ignored.
+Make sure `.env` is listed in `.gitignore` and absent from `git ls-files`.
 
 ---
 
@@ -820,30 +755,30 @@ Then open a pull request.
 
 # ◉ LICENSE
 
-Add the project's chosen license here.
-
-Example:
-
-```text
-MIT License
-```
-
-See [`LICENSE`](LICENSE) for details.
+MIT License. See [`LICENSE`](LICENSE) for details.
 
 ---
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=2&section=footer" width="60%" alt="" />
+<img src="https://capsule-render.vercel.app/api?type=rect&color=FF3B1D&height=3" width="100%"/>
 
 <br/><br/>
 
-**NIVESHRAKSHAK**
+# NIVESHRAKSHAK
 
-AI-ASSISTED FINANCIAL SAFETY
+**AI-ASSISTED FINANCIAL SAFETY**
 
 <br/>
 
-<sub>Analyze before you act.</sub>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Courier+New&size=16&duration=2200&pause=800&color=FF3B1D&center=true&vCenter=true&width=520&lines=DETECT+RED+FLAGS;VERIFY+BEFORE+YOU+TRUST;QUESTION+GUARANTEED+RETURNS;PAUSE+BEFORE+YOU+PAY;PROTECT+YOUR+MONEY)](https://git.io/typing-svg)
+
+<br/>
+
+**ANALYZE BEFORE YOU ACT.**
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=FF3B1D&height=100&section=footer" width="100%"/>
 
 </div>

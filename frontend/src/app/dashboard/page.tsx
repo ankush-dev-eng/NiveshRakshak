@@ -1,34 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, CheckCircle, ShieldAlert, ArrowRight, Loader2, Flag, FileSearch, ArrowUpRight, ChevronDown } from "lucide-react";
 
-interface RedFlag {
-  title: string;
-  severity: "LOW" | "MEDIUM" | "HIGH";
-  evidence: string;
-  explanation: string;
-}
+import { AnalysisResult, RedFlag, ClaimAssessment } from "./types";
+import { getDemoAnalysis } from "./demoData";
 
-interface ClaimAssessment {
-  claim: string;
-  assessment: "SUPPORTED" | "QUESTIONABLE" | "UNVERIFIED";
-  reason: string;
-}
+type AnalysisState = "idle" | "loading" | "success" | "error";
+type AnalysisMode = "live" | "demo";
 
-interface AnalysisResult {
-  risk_level: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
-  risk_score: number;
-  summary: string;
-  red_flags: RedFlag[];
-  claims: ClaimAssessment[];
-  recommended_actions: string[];
-  verification_steps: string[];
-  disclaimer: string;
-  analysis_source: "gemini" | "demo";
-}
-
+// ─── Demo Texts ───
 const DEMO_TEXTS = [
   "GUARANTEED RETURNS!! 🚀🚀 Double your money in 30 days! Join our premium Telegram group for daily multibagger stock tips. Pay ₹5000 advance to our account to secure your spot. Act now, only 5 spots left!",
   "We are an official SEBI-approved trading platform offering 10% monthly fixed returns on your deposit. Transfer funds to our secure nodal officer account (HDFC Acc: 123456789) to begin your risk-free investment journey.",
@@ -37,15 +19,98 @@ const DEMO_TEXTS = [
   "Investing in mutual funds through SIPs (Systematic Investment Plans) can be a good way to build wealth over the long term through the power of compounding. Note: Mutual fund investments are subject to market risks, read all scheme related documents carefully."
 ];
 
+// ─── Fetch with timeout ───
+async function fetchWithTimeout(url: string, options: RequestInit, timeoutMs: number): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    return response;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// ─── Live analysis with one retry ───
+async function analyzeLive(content: string, language: string): Promise<AnalysisResult> {
+  const API_URL = "http://127.0.0.1:8080/api/analyze";
+  const TIMEOUT_MS = 30000;
+  const MAX_ATTEMPTS = 2;
+
+  let lastError: Error | null = null;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const response = await fetchWithTimeout(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, language, mode: "live" })
+      }, TIMEOUT_MS);
+
+      // Don't retry client errors (400 range)
+      if (response.status >= 400 && response.status < 500) {
+        const errorData = await response.json().catch(() => ({ detail: "Invalid request." }));
+        throw new Error(errorData.detail || `Request failed with status ${response.status}`);
+      }
+
+      if (!response.ok) {
+        // Server error — retry if we have attempts left
+        if (attempt < MAX_ATTEMPTS) {
+          lastError = new Error(`Server error (${response.status}). Retrying...`);
+          await new Promise(r => setTimeout(r, 1500));
+          continue;
+        }
+        const errorData = await response.json().catch(() => ({ detail: "Live analysis unavailable." }));
+        throw new Error(errorData.detail || "Live analysis unavailable. Server returned an error.");
+      }
+
+      const data = await response.json();
+
+      // Validate the response has required fields
+      if (!data.risk_level || data.analysis_source === undefined) {
+        throw new Error("Received malformed response from the analysis engine.");
+      }
+
+      return data as AnalysisResult;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        lastError = new Error("Analysis request timed out. The server may be overloaded. Please try again.");
+        // Don't retry timeouts — they'll likely time out again
+        break;
+      }
+      if (err instanceof TypeError && err.message.includes("fetch")) {
+        lastError = new Error("Unable to connect to the analysis server. Please ensure the backend is running.");
+        break;
+      }
+      lastError = err instanceof Error ? err : new Error("An unexpected error occurred.");
+
+      // If it's a client error (thrown from 4xx handling), don't retry
+      if (lastError.message.includes("Invalid request") || lastError.message.includes("Request failed with status 4")) {
+        break;
+      }
+
+      if (attempt < MAX_ATTEMPTS) {
+        await new Promise(r => setTimeout(r, 1500));
+      }
+    }
+  }
+
+  throw lastError || new Error("Live analysis unavailable.");
+}
+
 export default function Dashboard() {
   const [content, setContent] = useState("");
   const [language, setLanguage] = useState("English");
-  const [loading, setLoading] = useState(false);
+  const [analysisState, setAnalysisState] = useState<AnalysisState>("idle");
+  const [analysisMode, setAnalysisMode] = useState<AnalysisMode>("live");
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [demoId, setDemoId] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const hasAutoAnalyzed = useRef(false);
 
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -56,54 +121,105 @@ export default function Dashboard() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Handle demo parameter — set text and auto-analyze with deterministic results
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const searchParams = new URLSearchParams(window.location.search);
-      const demoId = searchParams.get("demo");
-      if (demoId && !isNaN(Number(demoId))) {
-        const idx = Number(demoId) - 1;
-        if (idx >= 0 && idx < DEMO_TEXTS.length) {
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          setTimeout(() => setContent(DEMO_TEXTS[idx]), 0);
-        }
+    if (typeof window === "undefined") return;
+    const searchParams = new URLSearchParams(window.location.search);
+    const demoParam = searchParams.get("demo");
+    if (demoParam && !isNaN(Number(demoParam))) {
+      const id = Number(demoParam);
+      if (id >= 1 && id <= DEMO_TEXTS.length) {
+        setDemoId(id);
+        setContent(DEMO_TEXTS[id - 1]);
+        setAnalysisMode("demo");
       }
     }
   }, []);
 
-  const handleAnalyze = async () => {
-    if (!content.trim()) return;
-    setLoading(true);
+  // Auto-analyze demo content after state is set
+  const runDemoAnalysis = useCallback((id: number, currentLang: string, immediate = false) => {
+    const demoResult = getDemoAnalysis(id, currentLang);
+    if (!demoResult) return;
+
+    if (immediate) {
+      setResult(demoResult);
+      setAnalysisState("success");
+      return;
+    }
+
+    setAnalysisState("loading");
     setError(null);
     setResult(null);
 
+    // Small delay to show loading state for visual continuity
+    setTimeout(() => {
+      setResult(demoResult);
+      setAnalysisState("success");
+    }, 600);
+  }, []);
+
+  useEffect(() => {
+    if (demoId && content) {
+      if (!hasAutoAnalyzed.current) {
+        hasAutoAnalyzed.current = true;
+        runDemoAnalysis(demoId, language, false);
+      } else if (analysisMode === "demo") {
+        runDemoAnalysis(demoId, language, true);
+      }
+    }
+  }, [demoId, content, language, analysisMode, runDemoAnalysis]);
+
+  // Handle analyze button click
+  const handleAnalyze = async () => {
+    if (!content.trim()) return;
+
+    setAnalysisState("loading");
+    setError(null);
+    setResult(null);
+
+    // If we're in demo mode (has demoId), use deterministic results
+    if (demoId) {
+      setAnalysisMode("demo");
+      runDemoAnalysis(demoId, language, false);
+      return;
+    }
+
+    // Live mode — call the API
+    setAnalysisMode("live");
     try {
-      const response = await fetch("http://127.0.0.1:8080/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content, language })
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to analyze content");
-      }
-
-      const data = await response.json();
+      const data = await analyzeLive(content, language);
       setResult(data);
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || "An error occurred during analysis.");
-      } else {
-        setError("An error occurred during analysis.");
-      }
-    } finally {
-      setLoading(false);
+      setAnalysisState("success");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "An unexpected error occurred.";
+      setError(message);
+      setAnalysisState("error");
     }
   };
 
   const loadDemo = () => {
+    // Clear demo mode when loading a random demo on the dashboard
+    setDemoId(null);
+    hasAutoAnalyzed.current = false;
+    setAnalysisMode("live");
+    setResult(null);
+    setError(null);
+    setAnalysisState("idle");
     const randomIdx = Math.floor(Math.random() * DEMO_TEXTS.length);
     setContent(DEMO_TEXTS[randomIdx]);
   };
+
+  const handleClear = () => {
+    setContent("");
+    setResult(null);
+    setError(null);
+    setAnalysisState("idle");
+    setDemoId(null);
+    hasAutoAnalyzed.current = false;
+    setAnalysisMode("live");
+  };
+
+  const loading = analysisState === "loading";
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 lg:py-24">
@@ -145,7 +261,15 @@ export default function Dashboard() {
                 <label className="block font-mono text-xs tracking-widest text-muted-foreground uppercase mb-3">Message or Claim</label>
                 <textarea
                   value={content}
-                  onChange={(e) => setContent(e.target.value)}
+                  onChange={(e) => {
+                    setContent(e.target.value);
+                    // If user edits demo text, switch to live mode
+                    if (demoId) {
+                      setDemoId(null);
+                      hasAutoAnalyzed.current = false;
+                      setAnalysisMode("live");
+                    }
+                  }}
                   placeholder="Paste a WhatsApp message, SMS, investment offer, social media post, email, or financial claim..."
                   className="w-full h-64 bg-surface/50 border border-line-strong p-6 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent resize-none font-sans text-lg"
                 />
@@ -158,7 +282,7 @@ export default function Dashboard() {
                   className="group flex-1 bg-accent text-white h-14 flex items-center justify-center font-mono text-xs tracking-widest uppercase hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {loading ? <Loader2 className="h-4 w-4 animate-spin mr-3" /> : <ShieldAlert className="h-4 w-4 mr-3 group-hover:scale-110 transition-transform" />}
-                  {loading ? "Analyzing..." : "Analyze Content"}
+                  {loading ? "Analyzing…" : "Analyze Content"}
                 </button>
                 <button 
                   onClick={loadDemo} 
@@ -167,7 +291,7 @@ export default function Dashboard() {
                   Load Demo
                 </button>
                 <button 
-                  onClick={() => setContent("")} 
+                  onClick={handleClear} 
                   className="h-14 px-8 border border-transparent text-muted-foreground font-mono text-xs tracking-widest uppercase hover:text-foreground transition-colors"
                 >
                   Clear
@@ -180,7 +304,7 @@ export default function Dashboard() {
         {/* Results Section */}
         <div className="flex flex-col relative min-h-[500px]">
           <AnimatePresence mode="wait">
-            {!result && !loading && !error && (
+            {analysisState === "idle" && (
               <motion.div 
                 key="empty"
                 initial={{ opacity: 0 }} 
@@ -194,7 +318,7 @@ export default function Dashboard() {
               </motion.div>
             )}
 
-            {loading && (
+            {analysisState === "loading" && (
               <motion.div 
                 key="loading"
                 initial={{ opacity: 0 }} 
@@ -207,11 +331,13 @@ export default function Dashboard() {
                   <Loader2 className="h-12 w-12 text-accent animate-spin relative z-10 stroke-[1]" />
                 </div>
                 <p className="font-heading text-2xl uppercase tracking-widest text-foreground">Processing</p>
-                <p className="text-sm text-muted-foreground mt-4 font-mono uppercase tracking-widest">Running Risk Engine</p>
+                <p className="text-sm text-muted-foreground mt-4 font-mono uppercase tracking-widest">
+                  {analysisMode === "demo" ? "Loading Demo Data" : "Running Risk Engine"}
+                </p>
               </motion.div>
             )}
 
-            {error && (
+            {analysisState === "error" && (
               <motion.div 
                 key="error"
                 initial={{ opacity: 0 }} 
@@ -220,12 +346,20 @@ export default function Dashboard() {
                 className="absolute inset-0 border border-accent/50 bg-accent/5 p-8 flex flex-col items-center justify-center"
               >
                 <AlertTriangle className="h-12 w-12 text-accent mb-6 stroke-[1]" />
-                <h3 className="font-heading text-3xl uppercase tracking-widest text-accent mb-4">Analysis Failed</h3>
-                <p className="text-center text-foreground">{error}</p>
+                <h3 className="font-heading text-3xl uppercase tracking-widest text-accent mb-4">
+                  {analysisMode === "live" ? "Live Analysis Unavailable" : "Analysis Failed"}
+                </h3>
+                <p className="text-center text-foreground mb-6">{error}</p>
+                <button
+                  onClick={handleAnalyze}
+                  className="px-8 py-3 border border-accent text-accent font-mono text-xs tracking-widest uppercase hover:bg-accent hover:text-white transition-colors"
+                >
+                  Retry Analysis
+                </button>
               </motion.div>
             )}
 
-            {result && !loading && (
+            {analysisState === "success" && result && (
               <motion.div 
                 key="result"
                 initial={{ opacity: 0, y: 20 }} 

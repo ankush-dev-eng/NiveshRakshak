@@ -1,10 +1,12 @@
-﻿import sys
+import sys
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
     sys.stderr.reconfigure(encoding='utf-8')
 import os
 import json
 import re
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,8 +27,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# --- Single source of truth for model configuration ---
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL = "gemini-3.5-flash"
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+
 client = None
 
 if GEMINI_API_KEY:
@@ -36,6 +40,22 @@ if GEMINI_API_KEY:
     except Exception as e:
         print(f"Warning: Could not initialize Gemini client: {e}")
         client = None
+
+
+def _model_display_name(model_id: str) -> str:
+    """Convert model ID to human-readable display name.
+    e.g. gemini-2.0-flash -> Gemini 2.0 Flash
+    Preserves numeric/version parts as-is (no capitalise).
+    """
+    parts = model_id.split("-")
+    return " ".join(p if p[0].isdigit() else p.capitalize() for p in parts if p)
+
+
+def _bare_model_id(model_name: str) -> str:
+    """Strip 'models/' prefix returned by the Google SDK.
+    e.g. 'models/gemini-2.0-flash' -> 'gemini-2.0-flash'
+    """
+    return model_name.removeprefix("models/").strip()
 
 
 class AnalyzeRequest(BaseModel):
@@ -80,7 +100,7 @@ def get_demo_response(content: str, language: str) -> dict:
     is_legitimate = "mutual funds through sips" in content_lower
     
     scam_keywords = [
-        "guaranteed", "double", "triple", "otÐ¿", "otp", "advance", "pay now",
+        "guaranteed", "double", "triple", "otp", "advance", "pay now",
         "sebi registered", "join now", "limited spots", "telegram", "whatsapp group",
         "fixed returns", "monthly return", "risk-free", "kyc pending", "click here",
         "bit.ly", "secret algorithm", "inner circle", "multibagger"
@@ -96,7 +116,7 @@ def get_demo_response(content: str, language: str) -> dict:
         "claims": [],
         "recommended_actions": [],
         "verification_steps": [],
-        "disclaimer": "âš  DEMO MODE â€” This is a deterministic sample analysis.",
+        "disclaimer": "⚠️ DEMO MODE — This is a deterministic sample analysis.",
         "analysis_source": "demo"
     }
 
@@ -113,7 +133,7 @@ def get_demo_response(content: str, language: str) -> dict:
             ],
             "recommended_actions": ["Do not click the link.", "Contact your broker directly."],
             "verification_steps": ["Check your official trading app for KYC alerts."],
-            "disclaimer": "âš  DEMO MODE â€” This is a deterministic sample analysis.",
+            "disclaimer": "⚠️ DEMO MODE — This is a deterministic sample analysis.",
             "analysis_source": "demo"
         }
     elif is_fake_mentor:
@@ -122,14 +142,14 @@ def get_demo_response(content: str, language: str) -> dict:
             "risk_score": 85,
             "summary": "This message uses unrealistic claims of wealth generation to sell likely fraudulent mentorship or bot access.",
             "red_flags": [
-                {"title": "Unrealistic Returns", "severity": "HIGH", "evidence": "â‚¹10,000 into â‚¹1 Crore in 6 months", "explanation": "Statistically impossible consistent returns."}
+                {"title": "Unrealistic Returns", "severity": "HIGH", "evidence": "₹10,000 into ₹1 Crore in 6 months", "explanation": "Statistically impossible consistent returns."}
             ],
             "claims": [
                 {"claim": "Secret algorithm/bot trades for you", "assessment": "UNVERIFIED", "reason": "No verifiable proof provided."}
             ],
             "recommended_actions": ["Ignore the message.", "Do not pay for VIP access."],
             "verification_steps": ["Ask for audited P&L statements."],
-            "disclaimer": "âš  DEMO MODE â€” This is a deterministic sample analysis.",
+            "disclaimer": "⚠️ DEMO MODE — This is a deterministic sample analysis.",
             "analysis_source": "demo"
         }
     elif is_fake_reg:
@@ -145,7 +165,7 @@ def get_demo_response(content: str, language: str) -> dict:
             ],
             "recommended_actions": ["Do not transfer funds.", "Report to SEBI."],
             "verification_steps": ["Verify SEBI registration number on sebi.gov.in"],
-            "disclaimer": "âš  DEMO MODE â€” This is a deterministic sample analysis.",
+            "disclaimer": "⚠️ DEMO MODE — This is a deterministic sample analysis.",
             "analysis_source": "demo"
         }
     elif score >= 2:
@@ -161,7 +181,7 @@ def get_demo_response(content: str, language: str) -> dict:
             ],
             "recommended_actions": ["Do not transfer any money."],
             "verification_steps": ["Verify the organization's SEBI registration."],
-            "disclaimer": "âš  DEMO MODE â€” This is a deterministic sample analysis.",
+            "disclaimer": "⚠️ DEMO MODE — This is a deterministic sample analysis.",
             "analysis_source": "demo"
         }
     elif is_legitimate:
@@ -175,15 +195,15 @@ def get_demo_response(content: str, language: str) -> dict:
             ],
             "recommended_actions": ["Consult a registered advisor if needed."],
             "verification_steps": ["Read scheme related documents."],
-            "disclaimer": "âš  DEMO MODE â€” This is a deterministic sample analysis.",
+            "disclaimer": "⚠️ DEMO MODE — This is a deterministic sample analysis.",
             "analysis_source": "demo"
         }
 
     # Simulate translation for non-English demo requests
     if language.lower() == "hindi" and base_response["risk_level"] != "LOW":
-        base_response["summary"] = "à¤¯à¤¹ à¤¸à¤‚à¤¦à¥‡à¤¶ à¤à¤• à¤µà¤¿à¤¤à¥à¤¤à¥€à¤¯ à¤˜à¥‹à¤Ÿà¤¾à¤²à¥‡ à¤•à¤¾ à¤¸à¤‚à¤•à¥‡à¤¤ à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤•à¥ƒà¤ªà¤¯à¤¾ à¤¸à¤¾à¤µà¤§à¤¾à¤¨ à¤°à¤¹à¥‡à¤‚à¥¤"
+        base_response["summary"] = "यह संदेश एक वित्तीय घोटाले का संकेत देता है। कृपया सावधान रहें।"
     elif language.lower() == "marathi" and base_response["risk_level"] != "LOW":
-        base_response["summary"] = "à¤¹à¤¾ à¤¸à¤‚à¤¦à¥‡à¤¶ à¤†à¤°à¥à¤¥à¤¿à¤• à¤«à¤¸à¤µà¤£à¥à¤•à¥€à¤šà¤¾ à¤¸à¤‚à¤•à¥‡à¤¤ à¤¦à¥‡à¤¤à¥‹. à¤•à¥ƒà¤ªà¤¯à¤¾ à¤¸à¤¾à¤µà¤§à¤—à¤¿à¤°à¥€ à¤¬à¤¾à¤³à¤—à¤¾."
+        base_response["summary"] = "हा संदेश आर्थिक फसवणुकीचा संकेत देतो. कृपया सावधगिरी बाळगा."
     elif language.lower() == "hinglish" and base_response["risk_level"] != "LOW":
         base_response["summary"] = "Ye message financial scam ho sakta hai. Savdhaan rahein."
 
@@ -261,43 +281,56 @@ Message to analyze:
 
 Return only valid JSON matching the specified schema. No markdown formatting."""
 
-    try:
-        print(f"GEMINI REQUEST START\nMODEL = {GEMINI_MODEL}")
-        response = client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=[
-                {"role": "user", "parts": [{"text": SYSTEM_PROMPT + "\n\n" + user_prompt}]}
-            ],
-        )
-        print("GEMINI RESPONSE RECEIVED\nSOURCE = GEMINI")
-        result = parse_gemini_response(response.text)
-        
-        result.setdefault("risk_level", "MEDIUM")
-        result.setdefault("risk_score", 50)
-        result.setdefault("summary", "Analysis complete.")
-        result.setdefault("red_flags", [])
-        result.setdefault("claims", [])
-        result.setdefault("recommended_actions", ["Independently verify all claims before taking action."])
-        result.setdefault("verification_steps", ["Verify the sender's identity through official channels."])
-        result.setdefault("disclaimer", "NiveshRakshak provides informational risk analysis, not investment advice or legal advice.")
-        result["analysis_source"] = "gemini"
-        
-        if result["risk_level"] not in ["LOW", "MEDIUM", "HIGH", "CRITICAL"]:
-            result["risk_level"] = "MEDIUM"
-        
+    max_attempts = 2
+    last_error = None
+
+    for attempt in range(1, max_attempts + 1):
         try:
-            result["risk_score"] = max(0, min(100, int(result["risk_score"])))
-        except (ValueError, TypeError):
-            result["risk_score"] = 50
+            print(f"GEMINI REQUEST START (attempt {attempt}/{max_attempts})\nMODEL = {GEMINI_MODEL}")
+            response = client.models.generate_content(
+                model=GEMINI_MODEL,
+                contents=[
+                    {"role": "user", "parts": [{"text": SYSTEM_PROMPT + "\n\n" + user_prompt}]}
+                ],
+            )
+            print("GEMINI RESPONSE RECEIVED\nSOURCE = GEMINI")
+            result = parse_gemini_response(response.text)
             
-        return result
-        
-    except json.JSONDecodeError as e:
-        print(f"JSON parse error from Gemini: {e}")
-        raise HTTPException(status_code=502, detail="Gemini analysis unavailable. Invalid JSON.")
-    except Exception as e:
-        print(f"Gemini API error: {e}")
-        raise HTTPException(status_code=502, detail="Gemini analysis unavailable. API Error.")
+            result.setdefault("risk_level", "MEDIUM")
+            result.setdefault("risk_score", 50)
+            result.setdefault("summary", "Analysis complete.")
+            result.setdefault("red_flags", [])
+            result.setdefault("claims", [])
+            result.setdefault("recommended_actions", ["Independently verify all claims before taking action."])
+            result.setdefault("verification_steps", ["Verify the sender's identity through official channels."])
+            result.setdefault("disclaimer", "NiveshRakshak provides informational risk analysis, not investment advice or legal advice.")
+            result["analysis_source"] = "gemini"
+            
+            if result["risk_level"] not in ["LOW", "MEDIUM", "HIGH", "CRITICAL"]:
+                result["risk_level"] = "MEDIUM"
+            
+            try:
+                result["risk_score"] = max(0, min(100, int(result["risk_score"])))
+            except (ValueError, TypeError):
+                result["risk_score"] = 50
+                
+            return result
+            
+        except json.JSONDecodeError as e:
+            print(f"JSON parse error from Gemini (attempt {attempt}): {e}")
+            last_error = e
+            break
+        except Exception as e:
+            print(f"Gemini API error (attempt {attempt}): {e}")
+            last_error = e
+            if attempt < max_attempts:
+                time.sleep(1.5)
+                continue
+            break
+
+    error_type = "JSON parse error" if isinstance(last_error, json.JSONDecodeError) else "API error"
+    print(f"Gemini {error_type} after {max_attempts} attempts: {last_error}")
+    raise HTTPException(status_code=502, detail=f"Gemini analysis unavailable. {error_type}. Please retry.")
 
 
 @app.get("/api/health")
@@ -311,3 +344,144 @@ def health_check():
         "model": GEMINI_MODEL
     }
 
+
+@app.get("/api/system-status")
+async def system_status(live_test: bool = False):
+    """
+    Perform a live check of API key validity, model availability, and optionally
+    run a lightweight generateContent test. Never exposes the API key.
+
+    Query param:
+      live_test=true  →  also run a real generateContent call
+    """
+    verified_at = datetime.now(timezone.utc).isoformat()
+
+    # ── 1. API key present? ──────────────────────────────────────────────────
+    if not GEMINI_API_KEY:
+        return {
+            "api_key_status": "NOT_CONNECTED",
+            "api_key_message": "GEMINI_API_KEY is not set in the backend environment.",
+            "model_id": GEMINI_MODEL,
+            "model_name": _model_display_name(GEMINI_MODEL),
+            "model_status": "UNVERIFIED",
+            "model_message": "Cannot verify model without API key.",
+            "live_test": "UNAVAILABLE",
+            "live_test_message": "API key required for live generation test.",
+            "verified_at": verified_at,
+        }
+
+    if not client:
+        return {
+            "api_key_status": "ERROR",
+            "api_key_message": "Gemini client could not be initialized.",
+            "model_id": GEMINI_MODEL,
+            "model_name": _model_display_name(GEMINI_MODEL),
+            "model_status": "UNVERIFIED",
+            "model_message": "Client initialization failed.",
+            "live_test": "UNAVAILABLE",
+            "live_test_message": "Client initialization failed.",
+            "verified_at": verified_at,
+        }
+
+    # ── 2. Validate key + check model availability via models.list() ─────────
+    api_key_status = "ERROR"
+    api_key_message = "Unknown error during API validation."
+    model_status = "UNVERIFIED"
+    model_message = "Model availability not checked."
+    model_supports_generate = False
+
+    try:
+        models_pager = client.models.list()
+        # Collect all models (pager may be a list or a pager object)
+        try:
+            all_models = list(models_pager)
+        except Exception:
+            all_models = [models_pager] if models_pager else []
+
+        api_key_status = "CONNECTED"
+        api_key_message = "Gemini API authentication successful."
+
+        # Find configured model — Google SDK returns names like "models/gemini-2.0-flash"
+        configured_model_found = False
+        for m in all_models:
+            m_name = getattr(m, "name", "") or ""
+            bare = _bare_model_id(m_name)
+            if bare == GEMINI_MODEL or m_name == GEMINI_MODEL:
+                configured_model_found = True
+                # Check supported generation methods / actions
+                supported = (
+                    getattr(m, "supported_actions", None)
+                    or getattr(m, "supportedGenerationMethods", None)
+                    or []
+                )
+                actions_str = " ".join(str(a) for a in supported).lower()
+                # Accept if: list explicitly includes generateContent, OR list is empty (assume supported)
+                if "generatecontent" in actions_str or "generate_content" in actions_str or not supported:
+                    model_supports_generate = True
+                break
+
+        if configured_model_found and model_supports_generate:
+            model_status = "AVAILABLE"
+            model_message = f"Model {GEMINI_MODEL} is available and supports generateContent."
+        elif configured_model_found:
+            model_status = "NOT_AVAILABLE"
+            model_message = f"Model {GEMINI_MODEL} found but does not support generateContent."
+        else:
+            model_status = "NOT_AVAILABLE"
+            model_message = f"Model {GEMINI_MODEL} not found in available models for this API key."
+
+    except Exception as e:
+        err_str = str(e).lower()
+        if "403" in err_str or "permission" in err_str or "invalid" in err_str or "api_key" in err_str or "authentication" in err_str:
+            api_key_status = "INVALID"
+            api_key_message = "API key rejected by Gemini (authentication/permission error)."
+        elif "429" in err_str or "quota" in err_str or "rate" in err_str:
+            api_key_status = "RATE_LIMITED"
+            api_key_message = "Rate limit or quota exceeded. Key is likely valid."
+        else:
+            api_key_status = "ERROR"
+            api_key_message = "Unexpected error during API validation."
+
+        model_status = "UNVERIFIED"
+        model_message = "Cannot verify model availability due to API error."
+
+    # ── 3. Optional live generateContent test ────────────────────────────────
+    live_test_status = "NOT_RUN"
+    live_test_message = "Live test not requested. Click 'Verify Connection' to run."
+
+    if live_test and api_key_status in ("CONNECTED", "RATE_LIMITED"):
+        try:
+            test_response = client.models.generate_content(
+                model=GEMINI_MODEL,
+                contents=[{"role": "user", "parts": [{"text": "Respond with the single word OK."}]}],
+            )
+            output = (test_response.text or "").strip().upper()
+            if output:
+                live_test_status = "PASSED"
+                live_test_message = "generateContent test passed. Model is fully operational."
+            else:
+                live_test_status = "FAILED"
+                live_test_message = "generateContent returned an empty response."
+        except Exception as e:
+            err_str = str(e).lower()
+            if "429" in err_str or "quota" in err_str:
+                live_test_status = "RATE_LIMITED"
+                live_test_message = "Rate limit hit during live test. Try again later."
+            elif "503" in err_str or "unavailable" in err_str:
+                live_test_status = "FAILED"
+                live_test_message = "Gemini service temporarily unavailable."
+            else:
+                live_test_status = "FAILED"
+                live_test_message = "generateContent test failed."
+
+    return {
+        "api_key_status": api_key_status,
+        "api_key_message": api_key_message,
+        "model_id": GEMINI_MODEL,
+        "model_name": _model_display_name(GEMINI_MODEL),
+        "model_status": model_status,
+        "model_message": model_message,
+        "live_test": live_test_status,
+        "live_test_message": live_test_message,
+        "verified_at": verified_at,
+    }
