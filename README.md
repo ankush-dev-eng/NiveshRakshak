@@ -6,14 +6,6 @@
 
 [![Backend Tests](https://img.shields.io/badge/Backend%20Tests-17%20Passed-FF3B1D?style=flat-square&labelColor=08080A)](./backend/test_main.py)
 [![Frontend Build](https://img.shields.io/badge/Frontend%20Build-Passing-FF3B1D?style=flat-square&labelColor=08080A)](./frontend)
-[![Next.js](https://img.shields.io/badge/Next.js-16-F3F1EA?style=flat-square&labelColor=08080A)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-F3F1EA?style=flat-square&labelColor=08080A)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-F3F1EA?style=flat-square&labelColor=08080A)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-F3F1EA?style=flat-square&labelColor=08080A)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer%20Motion-13-F3F1EA?style=flat-square&labelColor=08080A)](https://www.framer.com/motion/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Python-F3F1EA?style=flat-square&labelColor=08080A)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/Python-3-F3F1EA?style=flat-square&labelColor=08080A)](https://www.python.org/)
-[![Gemini](https://img.shields.io/badge/Powered%20by-Google%20Gemini-FF6A3D?style=flat-square&labelColor=08080A)](https://ai.google.dev/)
 
 <br/>
 
@@ -250,19 +242,46 @@ The backend reads `GEMINI_MODEL` from environment at startup. Every endpoint —
 
 ---
 
-# ◉ TECH STACK
+# ◉ TECHNOLOGY STACK
+
+<div align="center">
+
+### FRONTEND
+
+[![Next.js](https://img.shields.io/badge/Next.js-08080A?style=for-the-badge&logo=next.js&logoColor=F3F1EA)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-08080A?style=for-the-badge&logo=react&logoColor=F3F1EA)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-08080A?style=for-the-badge&logo=typescript&logoColor=F3F1EA)](https://www.typescriptlang.org/)
+<br/>
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-08080A?style=for-the-badge&logo=tailwind-css&logoColor=F3F1EA)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-08080A?style=for-the-badge&logo=framer&logoColor=F3F1EA)](https://www.framer.com/motion/)
+
+<br/>
+
+### BACKEND + AI
+
+[![FastAPI](https://img.shields.io/badge/FastAPI-08080A?style=for-the-badge&logo=fastapi&logoColor=F3F1EA)](https://fastapi.tiangolo.com/)
+[![Python](https://img.shields.io/badge/Python-08080A?style=for-the-badge&logo=python&logoColor=F3F1EA)](https://www.python.org/)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-FF3B1D?style=for-the-badge&logo=google&logoColor=F3F1EA)](https://ai.google.dev/)
+
+<br/>
+
+### ENGINEERING
+
+[![pytest](https://img.shields.io/badge/pytest-08080A?style=for-the-badge&logo=pytest&logoColor=F3F1EA)](https://docs.pytest.org/)
+[![Git](https://img.shields.io/badge/Git-08080A?style=for-the-badge&logo=git&logoColor=F3F1EA)](https://git-scm.com/)
+
+</div>
+
+<br/>
 
 | Category | Technology | Role |
 |---|---|---|
-| Frontend | Next.js 16, React 19, TypeScript 5 | Core framework, language, and routing |
-| UI | shadcn/ui, Base UI | Component foundation |
-| Styling | Tailwind CSS v4, clsx, tailwind-merge | Utility-first styling and dynamic class merging |
-| Animation | Framer Motion, tw-animate-css | Cinematic reveals, transitions, and state changes |
-| Icons | Lucide React | Interface iconography |
-| Backend | FastAPI, Python 3, Uvicorn | High-performance async API server |
-| AI | Google Gemini API (`google-genai`) | Core AI risk analysis engine |
-| Validation | Pydantic | Strict request/response schema validation |
-| Testing | pytest, FastAPI TestClient | Comprehensive backend test suite |
+| Frontend | Next.js 16, React 19, TypeScript 5 | Application UI |
+| Styling | Tailwind CSS v4 | Design system |
+| Motion | Framer Motion | UI animation |
+| Backend | FastAPI, Python 3 | API + business logic |
+| AI | Google Gemini API (`google-genai`) | AI-assisted analysis |
+| Testing | pytest, FastAPI TestClient | Backend testing |
 
 ---
 
